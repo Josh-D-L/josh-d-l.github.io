@@ -1,0 +1,481 @@
+<HTML>
+
+<head>
+	<link rel="canonical" href="https://josh-d-l.github.io/Math-Machines/Binomial-Calculator" />
+	<style>
+	.spoiler {
+		background-color: #A0A0A0;
+		display: inline;
+		position: fixed;
+		right: 25px;
+		top: 20px;
+	}
+	</style>
+</head>
+
+<BODY>
+	<div style="display:none" id="Data Storage">
+		<div id="Equation">
+			<input type="text" class="SolveEquationFactor" style="width: 1px"></input>
+			<input type="text" class="SolveEquationFactor" style="width: 1px"></input>
+			<input type="text" class="SolveEquationFactor" style="width: 1px"></input>
+			<input type="text" class="SolveEquationFactor" style="width: 1px"></input>
+			<input type="text" class="SolveEquationFactor" style="width: 1px"></input>
+			<input type="text" class="SolveEquationFactor" style="width: 1px"></input>
+		</div>
+	</div>
+	<H1 style="text-align:center" id="title">Binomial Calculator</H1>
+	<p>
+		
+	</p>
+	<button type="button" style="position: fixed; right: 25px; top: 0px;" id="spoilerShow" onclick="toggleDisplay()">Settings</button>
+	<br>
+	<br>
+	<div class="spoiler" onmouseout="hide()" id="spoiler">
+		<input type="color" id="Background Color" onchange="backgroundColor()">
+		Background Color
+		<br>
+		<input type="color" id="Text Color" onchange="textColor()">
+		Text Color
+		<br>
+		<input type="color" id="Title Color" onchange="titleColor()">
+		Title Color
+		<br>
+		<input type="number" id="Font Size" onchange="fontSize()" style="width: 45px" value="16" min="1" max="100">
+		Font Size (px)
+		<br>
+		<button type="button" onclick="reset()">Reset Settings</button>
+	</div>
+	<span id="Factor" style="display:none">
+	<input type="text" id="VariableLetter" style="width: 15px" onBlur="ChangeVariable();" title="A letter"> Variable Letter</input>
+	<br>
+	<input type="text" class="FactorExpression" style="width: 12px" title="+ / -" value="+"></input>
+	<input type="text" class="FactorExpression" style="width: 20px" title="2nd Degree"></input><span class="Variable"></span>²
+	<input type="text" class="FactorExpression" style="width: 12px" title="+ / -" value="+"></input>
+	<input type="text" class="FactorExpression" style="width: 20px" title="1st Degree"></input><span class="Variable"></span> 
+	<input type="text" class="FactorExpression" style="width: 12px" title="+ / -" value="+"></input>
+	<input type="text" class="FactorExpression" style="width: 20px" title="Constant"></input>
+	<br>
+	</span>
+	<span id="Product" style="display:none">
+	<input type="text" id="VariableLetterProduct" style="width: 15px" onBlur="ChangeVariableProduct();" title="A letter"> Variable Letter</input>
+	<br>
+(<input type="text" class="ProductExpression" style="width: 12px" title="+ / -" value="+"></input><input type="text" class="ProductExpression" style="width: 20px" title="Coefficient"></input><span class="VariableProduct"></span>
+	<input type="text" class="ProductExpression" style="width: 12px" title="+ / -" value="+"></input>	<input type="text" class="ProductExpression" style="width: 20px" title="Constant"></input>)
+(<input type="text" class="ProductExpression" style="width: 12px" title="+ / -" value="+"></input><input type="text" class="ProductExpression" style="width: 20px" title="Coefficient"></input><span class="VariableProduct"></span>
+	<input type="text" class="ProductExpression" style="width: 12px" title="+ / -" value="+"></input>	<input type="text" class="ProductExpression" style="width: 20px" title="Constant"></input>)
+	</span>
+	<span id="Solve" style="display:none">
+	<input type="text" id="VariableLetterSolve" style="width: 15px" onBlur="ChangeVariableSolve();" title="A letter"> Variable Letter</input>
+	<br>
+	<input type="text" class="SolveEquation" style="width: 12px" title="+ / -" value="+"></input>
+	<input type="text" class="SolveEquation" style="width: 20px" title="2nd Degree"></input><span class="VariableSolve"></span>²
+	<input type="text" class="SolveEquation" style="width: 12px" title="+ / -" value="+"></input>
+	<input type="text" class="SolveEquation" style="width: 20px" title="1st Degree"></input><span class="VariableSolve"></span> 
+	<input type="text" class="SolveEquation" style="width: 12px" title="+ / -" value="+"></input>
+	<input type="text" class="SolveEquation" style="width: 20px" title="Constant"></input>
+	=
+	<input type="text" class="SolveEquation" style="width: 12px" title="+ / -" value="+"></input>
+	<input type="text" class="SolveEquation" style="width: 20px" title="2nd Degree"></input><span class="VariableSolve"></span>²
+	<input type="text" class="SolveEquation" style="width: 12px" title="+ / -" value="+"></input>
+	<input type="text" class="SolveEquation" style="width: 20px" title="1st Degree"></input><span class="VariableSolve"></span> 
+	<input type="text" class="SolveEquation" style="width: 12px" title="+ / -" value="+"></input>
+	<input type="text" class="SolveEquation" style="width: 20px" title="Constant"></input>
+	<br>
+	</span>
+
+
+	<p>
+		Process:
+	</p>
+	<form>
+		<input onclick="Set_Type_Factor()" type="radio" name="ProcessValue" value="Factor">Factor</input>
+		<br>
+		<input onclick="Set_Type_Product()" type="radio" name="ProcessValue" value="Product">Find Product
+		</input>
+		<br>
+		<input onclick="Set_Type_Solve()" type="radio" name="ProcessValue" value="Solve">Solve</input>
+	</form>
+	<b id="Result">
+
+	</b>
+	<br>
+	<br>
+	<button onclick="Calculate()" type="button">
+		Submit
+	</button>
+	<script type="text/javascript">
+	var host = "http://josh-d-l.github.io";
+	if ((host == window.location.host) && (window.location.protocol != "https:")) {
+		window.location.protocol = "https";
+	}
+	  document.getElementsByClassName("spoiler")[0].style.display = "none";
+  	document.getElementById("Background Color").value = "#FFFFFF";
+  	titleColor();
+  	var toggle = "on";
+  	function toggleDisplay() {
+  		if (toggle == "on") {
+  			document.getElementById("spoiler").style.display = "initial";
+  			toggle = "off";
+  		} else {
+  			document.getElementById("spoiler").style.display = "none";
+  			toggle = "on";
+  		}
+  	}
+  	var validNavigation = false;
+  	function endSession() {
+  		localStorage.setItem("Background Color", document.getElementById("Background Color").value);
+  		localStorage.setItem("Title Color", document.getElementById("Title Color").value);
+  		localStorage.setItem("Text Color", document.getElementById("Text Color").value);
+  	}
+  	window.onbeforeunload = function() {
+  		if (!validNavigation) {
+  			 endSession();
+  		}
+  	}
+  	window.onkeypress=function(e) {
+  		if (e.keyCode == 116){
+  			validNavigation = true;
+  		}
+  	};
+  	function hide() {
+  		var wait = setTimeout(function() {
+  			toggle = "on";
+  			document.getElementById("spoiler").style.display = "none";
+  		}, 3000);
+  		document.getElementById("spoiler").addEventListener("mouseover", function() {
+  			clearTimeout(wait);
+  		}, false);
+  	}
+  	function backgroundColor() {
+  		var color = document.getElementById("Background Color").value;
+  		document.body.style.backgroundColor = color;
+  	}
+  	function textColor() {
+  		var color = document.getElementById("Text Color").value;
+  		document.body.style.color = color;
+  	}
+  	function titleColor() {
+  		var color = document.getElementById("Title Color").value;
+  		document.getElementById("title").style.color = color;
+  	}
+  	function fontSize() {
+		var size = document.getElementById("Font Size").value;
+		document.body.style.fontSize = size + "px";
+	}
+  	function settings() {
+  		document.getElementById("Background Color").value = localStorage.getItem("Background Color");
+  		if (localStorage.getItem("Font Size") != null) {
+			document.getElementById("Font Size").value = localStorage.getItem("Font Size");
+			document.body.style.fontSize = localStorage.getItem("Font Size") + "px";
+		}
+  		document.getElementById("Title Color").value = localStorage.getItem("Title Color");
+  		document.getElementById("Text Color").value = localStorage.getItem("Text Color");
+  		document.getElementById("title").style.color = localStorage.getItem("Title Color");
+  		document.body.style.color = localStorage.getItem("Text Color");
+  		document.body.style.backgroundColor = localStorage.getItem("Background Color");
+  	}
+  	settings();
+  	function reset() {
+  		document.getElementById("Background Color").value = "#FFFFFF";
+  		document.getElementById("Title Color").value = "#000000";
+  		document.getElementById("Text Color").value = "#000000";
+  		document.getElementById("title").style.color = "#000000";
+  		document.getElementById("Font Size").value = "16";
+  		document.body.style.color = "#000000";
+  		document.body.style.fontSize = 16 + "px";
+  		document.body.style.backgroundColor = "#FFFFFF";
+  	}
+		function ChangeVariable() {
+			for (var x = 0; x < 2; x++) {
+				var Variable = document.getElementById("VariableLetter");
+				var Letter = Variable.value;
+				document.getElementsByClassName("Variable")[x].innerText = Letter;
+			}
+		}
+
+		function ChangeVariableProduct() {
+			for (var x = 0; x < 2; x++) {
+				var Variable = document.getElementById("VariableLetterProduct");
+				var Letter = Variable.value;
+				document.getElementsByClassName("VariableProduct")[x].innerText = Letter;
+			}
+		}
+
+		function ChangeVariableSolve() {
+			for (var x = 0; x < 4; x++) {
+				var Variable = document.getElementById("VariableLetterSolve");
+				var Letter = Variable.value;
+				document.getElementsByClassName("VariableSolve")[x].innerText = Letter;
+			}
+		}
+
+		function FindFactors(Number, Negative) {
+			var Find_Factors = [];
+			for (var x = 1; x <= Number / x; x++) {
+				if (is_int(Number / x) === true) {
+					if (Negative === true) {
+						Find_Factors.push(x);
+						Find_Factors.push(-Number / x);
+						Find_Factors.push(-x);
+						Find_Factors.push(Number / x);
+					} else {
+						Find_Factors.push(x);
+						Find_Factors.push(Number / x);
+					}
+				}
+			}
+			return Find_Factors;
+		}
+
+		function is_int(mixed_var) {
+			return mixed_var === +mixed_var && isFinite(mixed_var) && !(mixed_var % 1);
+		}
+
+		function Set_Type_Factor() {
+			localStorage.setItem("Process", "Factor");
+			document.getElementById("Factor").style.display = "inline";
+			document.getElementById("Product").style.display = "none";
+			document.getElementById("Solve").style.display = "none";
+			document.getElementById("Result").innerText = "";
+		}
+
+		function Set_Type_Product() {
+			localStorage.setItem("Process", "Product");
+			document.getElementById("Product").style.display = "inline";
+			document.getElementById("Factor").style.display = "none";
+			document.getElementById("Solve").style.display = "none";
+			document.getElementById("Result").innerText = "";
+		}
+
+		function Set_Type_Solve() {
+			localStorage.setItem("Process", "Solve");
+			document.getElementById("Solve").style.display = "inline";
+			document.getElementById("Factor").style.display = "none";
+			document.getElementById("Product").style.display = "none";
+			document.getElementById("Result").innerText = "";
+		}
+
+		function Calculate() {
+			if (localStorage.getItem("Process") === "Factor") {
+				var Equation = document.getElementsByClassName("FactorExpression");
+				document.getElementById("Result").innerText = "";
+				var Variable = document.getElementById("VariableLetter").value;
+				var Answer = Factor(Equation, Variable);
+				document.getElementById("Result").innerHTML += "<br>";
+				document.getElementById("Result").innerText += "Answer:";
+				document.getElementById("Result").innerHTML += "<br>";
+				document.getElementById("Result").innerText += Answer;
+			} else if (localStorage.getItem("Process") === "Product") {
+				var Equation = document.getElementsByClassName("ProductExpression");
+				document.getElementById("Result").innerText = "";
+				var Answer = Product(Equation);
+				document.getElementById("Result").innerHTML += "<br>";
+				document.getElementById("Result").innerText += "Answer:";
+				document.getElementById("Result").innerHTML += "<br>";
+				document.getElementById("Result").innerText += Answer;
+			} else if (localStorage.getItem("Process") === "Solve") {
+				var Equation = document.getElementsByClassName("SolveEquation");
+				document.getElementById("Result").innerText = "";
+				var Answer = Solve(Equation);
+				document.getElementById("Result").innerHTML += "<br>";
+				document.getElementById("Result").innerText += "Answer:";
+				document.getElementById("Result").innerHTML += "<br>";
+				document.getElementById("Result").innerText += Answer;
+			}
+		}
+
+		function Factor(Equation, Variable) {
+			var Values = [Equation[0].value, Equation[1].value, Equation[2].value, Equation[3].value, Equation[4].value, Equation[5].value];
+			var First_Term_Factors;
+			if (Values[0] == "-") {
+				First_Term_Factors = FindFactors(Values[1], true);
+			} else {
+				First_Term_Factors = FindFactors(Values[1], false);
+			}
+			var Constant_Factors;
+			if (Values[4] == "-") {
+				Constant_Factors = FindFactors(Values[5], true);
+			} else {
+				Constant_Factors = FindFactors(Values[5], false);
+			}
+			var Signs = [Values[0], Values[2], Values[4]];
+			document.getElementById("Result").innerText += "First Term Factors: ";
+			document.getElementById("Result").innerText += First_Term_Factors.join(", ");
+			document.getElementById("Result").innerHTML += "<br>";
+			document.getElementById("Result").innerText += "Last Term Factors: ";
+			document.getElementById("Result").innerText += Constant_Factors.join(", ");
+			document.getElementById("Result").innerHTML += "<br>";
+			var Factored = false;
+			for (var x = 0; x < First_Term_Factors.length && Factored === false; x += 2) {
+				for (var y = 0; y < Constant_Factors.length && Factored === false; y += 2) {
+					if (First_Term_Factors[x] * Constant_Factors[y] + First_Term_Factors[x + 1] * Constant_Factors[y + 1] == Values[3]) {
+						Factored = true;
+						var Factors = [First_Term_Factors[x], Constant_Factors[y + 1], First_Term_Factors[x + 1], Constant_Factors[y]];
+						if (Values[2] == "+") {
+							Factors = "(" + Factors[0] + Variable + " + " + Factors[1] + ")(" + Factors[2] + Variable + " + " + Factors[3] + ")";
+						} else {
+							Factors = "(" + Factors[0] + Variable + " - " + Factors[1] + ")(" + Factors[2] + Variable + " - " + Factors[3] + ")";
+						}
+						while (Factors.indexOf(" + -") > -1) {
+							Factors = Factors.replace(" + -", " - ");
+						}
+						while (Factors.indexOf("1" + Variable) > -1) {
+							Factors = Factors.replace("1" + Variable, Variable);
+						}
+						while (Factors.indexOf(" - -") > -1) {
+							Factors = Factors.replace(" - -", " + ");
+						}
+						return Factors;
+					} else if (First_Term_Factors[x] * Constant_Factors[y + 1] + First_Term_Factors[x + 1] * Constant_Factors[y] == Values[3]) {
+						Factored = true;
+						var Factors = [First_Term_Factors[x], Constant_Factors[y], First_Term_Factors[x + 1], Constant_Factors[y + 1]];
+						var Factors = "(" + Factors[0] + Variable + " + " + Factors[1] + ")(" + Factors[2] + Variable + " + " + Factors[3] + ")";
+						while (Factors.indexOf(" + -") > -1) {
+							Factors = Factors.replace(" + -", " - ");
+						}
+						while (Factors.indexOf("1" + Variable) > -1) {
+							Factors = Factors.replace("1" + Variable, Variable);
+						}
+						while (Factors.indexOf(" - -") > -1) {
+							Factors = Factors.replace(" - -", " + ");
+						}
+						return Factors;
+					}
+				}
+			}
+			if (Factored === false) {
+				return "This can not be factored";
+			}
+		}
+
+		function Product(Equation) {
+			var Values = [Equation[0].value, Equation[1].value, Equation[2].value, Equation[3].value, Equation[4].value, Equation[5].value, Equation[6].value, Equation[7].value];
+			var Signs = [Values[0], Values[2], Values[4], Values[6]];
+			Values.splice(0,1);
+			Values.splice(1,1);
+			Values.splice(2,1);
+			Values.splice(3,1);
+			Values[0] = Number(Signs[0]+Values[0]);
+			Values[1] = Number(Signs[1]+Values[1]);
+			Values[2] = Number(Signs[2]+Values[2]);
+			Values[3] = Number(Signs[3]+Values[3]);
+			var Variable = document.getElementById("VariableLetterProduct").value;
+			var Text = (Values[0] * Values[2]) + Variable + "² + " + (Values[1] * Values[2]) + Variable + " + " + (Values[0] * Values[3]) + Variable + " + " + (Values[3] * Values[1]);
+			while (Text.indexOf(" + -") > -1) {
+				Text = Text.replace(" + -", " - ");
+			}
+			document.getElementById("Result").innerText += Text;
+			document.getElementById("Result").innerHTML += "<br>";
+			Text = (Values[0] * Values[2]) + Variable + "² + " + ((Values[1] * Values[2]) + (Values[0] * Values[3])) + Variable + " + " + (Values[3] * Values[1]);
+			while (Text.indexOf("1" + Variable) > -1) {
+				Text = Text.replace("1" + Variable, Variable);
+			}
+			while (Text.indexOf(" + -") > -1) {
+				Text = Text.replace(" + -", " - ");
+			}
+			return Text;
+		}
+
+		function isAlpha(string) {
+			var patt = /[a-zA-Z]+/;
+			return patt.test(string);
+		}
+
+		function Solve(Equation) {
+			var Variable = document.getElementById("VariableLetterSolve").value;
+			var Values = [Equation[0].value, Equation[1].value, Equation[2].value, Equation[3].value, Equation[4].value, Equation[5].value, Equation[6].value, Equation[7].value, Equation[8].value, Equation[9].value];
+			Values.push(Equation[10].value);
+			Values.push(Equation[11].value);
+			var Signs = [];
+			var Numbers = [];
+			var Values1 = [];
+			for (var x = 0; x < 12; x += 2) {
+				Values1.push(Number(Values[x] + Values[x+1]));
+				Numbers.push(Number(Values[x] + Values[x+1]));
+			}
+			Values = Values1;
+			for (x = 0; x < 3; x++) {
+				Values[x] = Number(Values[x] - Values[x + 3]);
+				Numbers[x] = Number(Numbers[x] - Numbers[x + 3]);
+				if (Numbers[x] < 0) {
+					Signs.push("-");
+				} else {
+					Signs.push("+");
+				}
+			}
+			Values.splice(3,3);
+			Numbers.splice(3,3);
+			var Text = Values[0] + Variable + "² + " + Values[1] + Variable + " + " + Values[2] + " = 0";
+			while (Text.indexOf("1" + Variable) > -1) {
+				Text = Text.replace("1" + Variable, Variable);
+			}
+			while (Text.indexOf(" + -") > -1) {
+				Text = Text.replace(" + -", " - ");
+			}
+			while (Text.indexOf("0" + Variable) > -1) {
+				Text = Text.slice(0, Text.indexOf("0" + Variable) - 3) + Text.slice(Text.indexOf("0" + Variable) + ("0" + Variable).length)
+			}
+			document.getElementById("Result").innerText += Text;
+			document.getElementById("Result").innerHTML += "<br>";
+			var Equation1 = document.getElementsByClassName("SolveEquationFactor");
+			if (Numbers[0] < 0) {
+				Numbers[0] = Numbers[0] * -1
+			}
+			if (Numbers[1] < 0) {
+				Numbers[1] = Numbers[1] * -1
+			}
+			if (Numbers[2] < 0) {
+				Numbers[2] = Numbers[2] * -1
+			}
+			Equation1[0].value = Signs[0];
+			Equation1[1].value = Numbers[0];
+			Equation1[2].value = Signs[1];
+			Equation1[3].value = Numbers[1];
+			Equation1[4].value = Signs[2];
+			Equation1[5].value = Numbers[2];
+			var Factored = Factor(Equation1, Variable);
+			document.getElementById("Result").innerText += Factored;
+			document.getElementById("Result").innerHTML += "<br>";
+			Factored = Factored.split(")(");
+			Factored[0] = Factored[0].replace("(", "");
+			Factored[1] = Factored[1].replace(")", "");
+			document.getElementById("Result").innerText += Factored[0] + " = 0   ||   " + Factored[1] + " = 0";
+			document.getElementById("Result").innerHTML += "<br>";
+			var Answers = [];
+			if (Factored[0].indexOf(" + ") > -1) {
+				Answers.push(Factored[0].slice(Factored[0].indexOf(" + ") + 3));
+			} else {
+				Answers.push(-Factored[0].slice(Factored[0].indexOf(" - ") + 3));
+			}
+			if (Factored[1].indexOf(" + ") > -1) {
+				Answers.push(Factored[1].slice(Factored[1].indexOf(" + ") + 3));
+			} else {
+				Answers.push(-Factored[1].slice(Factored[1].indexOf(" - ") + 3));
+			}
+			Answers[0] = Answers[0] * -1;
+			Answers[1] = Answers[1] * -1;
+			Answers[0] = Answers[0] / Number(Factored[0].slice(0, Factored[0].indexOf(Variable)));
+			Answers[1] = Answers[1] / Number(Factored[1].slice(0, Factored[0].indexOf(Variable)));
+			var Text;
+			if (Answers[0] == -Answers[1]) {
+				if (Answers[0] > 0) {
+					Text = Variable + " = ±" + Answers[0] * Number(Factored[0].slice(0, Factored[0].indexOf(Variable))) + " / " + Factored[0].slice(0, Factored[0].indexOf(Variable));
+				} else {
+					Text = Variable + " = ±" + Answers[1] * Number(Factored[1].slice(0, Factored[1].indexOf(Variable))) + " / " + Factored[1].slice(0, Factored[1].indexOf(Variable));
+				}
+			} else {
+				Text = Variable + " = " + Answers[0] * Number(Factored[0].slice(0, Factored[0].indexOf(Variable))) + " / " + Factored[0].slice(0, Factored[0].indexOf(Variable)) + "   OR   " + Variable + " = " + Answers[1] * Number(Factored[1].slice(0, Factored[1].indexOf(Variable))) + " / " + Factored[1].slice(0, Factored[1].indexOf(Variable));
+			}
+			return Text;
+		}
+	</script>
+	<H5 style="position: fixed; bottom: 0px; right: 25px; color: #000000" id="mine">
+	Copyright Josh Lawson
+	</H5>
+	<div style="position: fixed; bottom: 0px; left: 0px; color: #000000">
+		<a href="https://josh-d-l.github.io/Math-Machines/" style="font-size: 200%;">Home Page</a>
+ 	</div>
+</BODY>
+
+</HTML>
