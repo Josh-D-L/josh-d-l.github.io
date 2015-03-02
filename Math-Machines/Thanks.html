@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<HTML>
+
+<head>
+	<link rel="canonical" href="https://josh-d-l.github.io/Math-Machines/Radical-Simplifier/" />
+  <style>
+  	.spoiler {
+  		background-color: #A0A0A0;
+  		display: inline;
+  		position: fixed;
+  		right: 25px;
+  		top: 20px;
+  	}
+	</style>
+</head>
+
+<BODY>
+	<H1 style="text-align:center" id="title">Thank you!</H1>
+	<p style="text-align:center">
+		<a href="https://josh-d-l.github.io/Math-Machines/" style="font-size: 200%;">Home Page</a>
+	</p>
+	<button type="button" style="position: fixed; right: 25px; top: 0px;" id="spoilerShow" onclick="toggleDisplay()">Settings</button>	<br>
+	<br>
+	<div class="spoiler" onmouseout="hide()" id="spoiler">
+		<input type="color" id="Background Color" onchange="backgroundColor()">
+		Background Color
+		<br>
+		<input type="color" id="Text Color" onchange="textColor()">
+		Text Color
+		<br>
+		<input type="color" id="Title Color" onchange="titleColor()">
+		Title Color
+		<br>
+		<input type="number" id="Font Size" onchange="fontSize()" style="width: 45px" value="16" min="1" max="100">
+		Font Size (px)
+		<br>
+		<button type="button" onclick="reset()">Reset Settings</button>
+	</div>
+	<script type="text/javascript">
+	  var host = "http://josh-d-l.github.io";
+  	if ((host == window.location.host) && (window.location.protocol != "https:")) {
+  		window.location.protocol = "https";
+  	}
+	  document.getElementsByClassName("spoiler")[0].style.display = "none";
+  	document.getElementById("Background Color").value = "#FFFFFF";
+  	titleColor();
+  	var toggle = "on";
+  	function toggleDisplay() {
+  		if (toggle == "on") {
+  			document.getElementById("spoiler").style.display = "initial";
+  			toggle = "off";
+  		} else {
+  			document.getElementById("spoiler").style.display = "none";
+  			toggle = "on";
+  		}
+  	}
+  	var validNavigation = false;
+  	function endSession() {
+  		localStorage.setItem("Background Color", document.getElementById("Background Color").value);
+  		localStorage.setItem("Title Color", document.getElementById("Title Color").value);
+  		localStorage.setItem("Text Color", document.getElementById("Text Color").value);
+  	}
+  	window.onbeforeunload = function() {
+  		if (!validNavigation) {
+  			 endSession();
+  		}
+  	}
+  	window.onkeypress=function(e) {
+  		if (e.keyCode == 116){
+  			validNavigation = true;
+  		}
+  	};
+  	function hide() {
+  		var wait = setTimeout(function() {
+  			toggle = "on";
+  			document.getElementById("spoiler").style.display = "none";
+  		}, 3000);
+  		document.getElementById("spoiler").addEventListener("mouseover", function() {
+  			clearTimeout(wait);
+  		}, false);
+  	}
+  	function backgroundColor() {
+  		var color = document.getElementById("Background Color").value;
+  		document.body.style.backgroundColor = color;
+  	}
+  	function textColor() {
+  		var color = document.getElementById("Text Color").value;
+  		document.body.style.color = color;
+  	}
+  	function titleColor() {
+  		var color = document.getElementById("Title Color").value;
+  		document.getElementById("title").style.color = color;
+  	}
+  	function fontSize() {
+		var size = document.getElementById("Font Size").value;
+		document.body.style.fontSize = size + "px";
+	}
+  	function settings() {
+  		document.getElementById("Background Color").value = localStorage.getItem("Background Color");
+  		if (localStorage.getItem("Font Size") != null) {
+			document.getElementById("Font Size").value = localStorage.getItem("Font Size");
+			document.body.style.fontSize = localStorage.getItem("Font Size") + "px";
+		}
+  		document.getElementById("Title Color").value = localStorage.getItem("Title Color");
+  		document.getElementById("Text Color").value = localStorage.getItem("Text Color");
+  		document.getElementById("title").style.color = localStorage.getItem("Title Color");
+  		document.body.style.color = localStorage.getItem("Text Color");
+  		document.body.style.backgroundColor = localStorage.getItem("Background Color");
+  	}
+  	settings();
+  	function reset() {
+  		document.getElementById("Background Color").value = "#FFFFFF";
+  		document.getElementById("Title Color").value = "#000000";
+  		document.getElementById("Text Color").value = "#000000";
+  		document.getElementById("title").style.color = "#000000";
+  		document.getElementById("Font Size").value = "16";
+  		document.body.style.fontSize = 16 + "px";
+  		document.body.style.color = "#000000";
+  		document.body.style.backgroundColor = "#FFFFFF";
+  	}
+  	</script>
