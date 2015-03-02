@@ -1,2 +1,2 @@
-# josh-d-l.github.io
-Math Machines
+# Math-Machines
+Copyright Joshua D Lawson
