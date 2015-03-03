@@ -15,15 +15,9 @@
 	<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 </head>
 <BODY>
-<span itemscope itemtype="http://schema.org/SoftwareApplication"><H1 itemprop="name" style="text-align:center" id="title">Math Machines</H1>
+<span itemscope itemtype="http://schema.org/SoftwareApplication">
 <br>
-<a href="https://josh-d-l.github.io/Math-Machines/Machines/Triangle-Calculator">Triangle Calculator (Testing)</a>
-<br>
-<a href="https://josh-d-l.github.io/Math-Machines/Machines/Radical-Simplifier">Radical Simplifier</a>
-<br>
-<a href="https://josh-d-l.github.io/Math-Machines/Machines/Binomial-Calculator">Binomial Calculator</a>
-<br>
-<a href="https://josh-d-l.github.io/Math-Machines/Feedback">Feedback</a>
+<a style="text-align:center" href="https://josh-d-l.github.io/Math-Machines/">Please go to this link if it does not automatically redirect you</a>
 <button type="button" style="position: fixed; right: 25px; top: 0px" id="spoilerShow" onclick="toggleDisplay()">Settings</button>
 <br>
 <br>
@@ -47,6 +41,7 @@
 	if ((host == window.location.host) && (window.location.protocol != "https:")) {
 		window.location.protocol = "https";
 	}
+	window.location = "https://josh-d-l.github.io/Math-Machines/"
 	document.getElementsByClassName("spoiler")[0].style.display = "none";
 	document.getElementById("Background Color").value = "#FFFFFF";
 	var toggle = "on";
