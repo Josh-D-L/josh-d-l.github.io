@@ -1,6 +1,6 @@
 https://josh-d-l.github.io/
 https://josh-d-l.github.io/Math-Machines/Feedback
 https://josh-d-l.github.io/Math-Machines/Thanks
-https://josh-d-l.github.io/Math-Machines/Binomial-Calculator
-https://josh-d-l.github.io/Math-Machines/Radical-Simplifier
-https://josh-d-l.github.io/Math-Machines/Triangle-Calculator
+https://josh-d-l.github.io/Math-Machines/Machines/Binomial-Calculator
+https://josh-d-l.github.io/Math-Machines/Machines/Radical-Simplifier
+https://josh-d-l.github.io/Math-Machines/Machines/Triangle-Calculator
