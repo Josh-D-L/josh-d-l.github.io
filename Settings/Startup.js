@@ -19,3 +19,13 @@ function hide() {
 		clearTimeout(wait);
 	}, false);
 }
+function reset() {
+	document.getElementById("Background Color").value = "#FFFFFF";
+	document.getElementById("Title Color").value = "#000000";
+	document.getElementById("Text Color").value = "#000000";
+	document.getElementById("Font Size").value = "16";
+	document.body.style.fontSize = 16 + "px";
+	document.getElementById("title").style.color = "#000000";
+	document.body.style.color = "#000000";
+	document.body.style.backgroundColor = "#FFFFFF";
+}
