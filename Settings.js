@@ -1,3 +1,4 @@
+document.getElementById("InjectTo").innerHTML = document.getElementById("Settings-Tab").innerHTML;
 document.getElementsByClassName("spoiler")[0].style.display = "none";
 document.getElementById("Background Color").value = "#FFFFFF";
 var toggle = "on";
@@ -73,4 +74,3 @@ var host = "josh-d-l.github.io";
 if ((host == window.location.host) && (window.location.protocol != "https:")) {
 	window.location.protocol = "https";
 }
-document.getElementById("InjectTo").innerHTML = document.getElementById("Settings-Tab").innerHTML;
