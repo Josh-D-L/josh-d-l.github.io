@@ -1,5 +1,5 @@
-document.getElementById("InjectTo").innerHTML = $('#Settings-Tab').contents().find("html").html();;
-alert(document.getElementById('Settings-Tab').contentWindow.document.body.innerHTML);
+document.getElementById("InjectTo").innerHTML = $('#Settings-Tab').contents().find("html").html();
+alert($('#Settings-Tab').contents().find("html").html());
 document.getElementsByClassName("spoiler")[0].style.display = "none";
 document.getElementById("Background Color").value = "#FFFFFF";
 var toggle = "on";
