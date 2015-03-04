@@ -1,4 +1,4 @@
-document.getElementById("InjectTo").innerHTML = document.getElementById("Settings-Tab").innerHTML;
+document.getElementById("InjectTo").innerHTML = document.getElementById('Settings-Tab').contentWindow.document.body.innerHTML;
 document.getElementsByClassName("spoiler")[0].style.display = "none";
 document.getElementById("Background Color").value = "#FFFFFF";
 var toggle = "on";
