@@ -1,7 +1,10 @@
 window.onload=function(){
-	document.getElementById("InjectTo").innerHTML = $('#Settings-Tab').contents().find("body").html();
-	document.getElementsByClassName("spoiler")[0].style.display = "none";
-	document.getElementById("Background Color").value = "#FFFFFF";
+	function endSession() {
+		  localStorage.setItem("Background Color", document.getElementById("Background Color").value);
+		  localStorage.setItem("Title Color", document.getElementById("Title Color").value);
+		  localStorage.setItem("Text Color", document.getElementById("Text Color").value);
+		  localStorage.setItem("Font Size", document.getElementById("Font Size").value);
+	}
 	var toggle = "on";
 	function toggleDisplay() {
 		if (toggle == "on") {
@@ -61,18 +64,18 @@ window.onload=function(){
 		document.body.style.color = localStorage.getItem("Text Color");
 		document.body.style.backgroundColor = localStorage.getItem("Background Color");
 	}
-	settings();
-	window.onbeforeunload = function() {
-	  endSession();
-	}
-	function endSession() {
-	  localStorage.setItem("Background Color", document.getElementById("Background Color").value);
-	  localStorage.setItem("Title Color", document.getElementById("Title Color").value);
-	  localStorage.setItem("Text Color", document.getElementById("Text Color").value);
-	  localStorage.setItem("Font Size", document.getElementById("Font Size").value);
-	}
-	var host = "josh-d-l.github.io";
-	if ((host == window.location.host) && (window.location.protocol != "https:")) {
-		window.location.protocol = "https";
-	}
+	setTimeout(function(){
+		document.getElementById("InjectTo").innerHTML = $('#Settings-Tab').contents().find("body").html();
+		document.getElementsByClassName("spoiler")[0].style.display = "none";
+		document.getElementById("Background Color").value = "#FFFFFF";
+		settings();
+		window.onbeforeunload = function() {
+		  endSession();
+		}
+		var host = "josh-d-l.github.io";
+		if ((host == window.location.host) && (window.location.protocol != "https:")) {
+			window.location.protocol = "https";
+		}
+	}, 250)
+	
 };
