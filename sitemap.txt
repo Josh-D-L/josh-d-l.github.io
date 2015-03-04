@@ -6,3 +6,4 @@ https://josh-d-l.github.io/Math-Machines/About
 https://josh-d-l.github.io/Math-Machines/Machines/Binomial-Calculator
 https://josh-d-l.github.io/Math-Machines/Machines/Radical-Simplifier
 https://josh-d-l.github.io/Math-Machines/Machines/Triangle-Solver
+https://josh-d-l.github.io/Math-Machines/Machines/Permutations_and_Combinations
