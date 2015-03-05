@@ -65,7 +65,6 @@ window.onload=function(){
 		document.body.style.backgroundColor = localStorage.getItem("Background Color");
 	}
 	setTimeout(function(){
-		document.getElementById("InjectTo").innerHTML = $('#Settings-Tab').contents().find("body").html();
 		document.getElementsByClassName("spoiler")[0].style.display = "none";
 		document.getElementById("Background Color").value = "#FFFFFF";
 		settings();
