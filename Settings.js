@@ -73,10 +73,7 @@ document.getElementById("Background Color").value = "#FFFFFF";
 setTimeout(function() {
 settings();	
 }, 250);
-
-window.onbeforeunload = function() {
-	endSession();
-}
+window.onbeforeunload = endSession();
 var host = "josh-d-l.github.io";
 if ((host == window.location.host) && (window.location.protocol != "https:")) {
 	window.location.protocol = "https";
