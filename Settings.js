@@ -70,9 +70,7 @@ if (typeof(reassign) === typeof(Function)) {
 }
 document.getElementsByClassName("spoiler")[0].style.display = "none";
 document.getElementById("Background Color").value = "#FFFFFF";
-setTimeout(function() {
-settings();	
-}, 250);
+settings();
 window.onbeforeunload = endSession();
 var host = "josh-d-l.github.io";
 if ((host == window.location.host) && (window.location.protocol != "https:")) {
