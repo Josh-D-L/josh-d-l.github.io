@@ -65,6 +65,8 @@ function settings() {
 }
 if (typeof(reassign) === typeof(Function)) {
 	reassign();
+} else {
+	console.log(typeof(reassign) + " " + typeof(Function));
 }
 document.getElementsByClassName("spoiler")[0].style.display = "none";
 document.getElementById("Background Color").value = "#FFFFFF";
