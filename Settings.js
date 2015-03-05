@@ -70,7 +70,10 @@ if (typeof(reassign) === typeof(Function)) {
 }
 document.getElementsByClassName("spoiler")[0].style.display = "none";
 document.getElementById("Background Color").value = "#FFFFFF";
-settings();
+setTimeout(function() {
+settings();	
+}, 250);
+
 window.onbeforeunload = function() {
 	endSession();
 }
