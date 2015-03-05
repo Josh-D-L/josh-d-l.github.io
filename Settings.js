@@ -64,17 +64,18 @@ window.onload=function(){
 		document.body.style.color = localStorage.getItem("Text Color");
 		document.body.style.backgroundColor = localStorage.getItem("Background Color");
 	}
-	setTimeout(function(){
-		document.getElementsByClassName("spoiler")[0].style.display = "none";
-		document.getElementById("Background Color").value = "#FFFFFF";
-		settings();
-		window.onbeforeunload = function() {
-		  endSession();
-		}
-		var host = "josh-d-l.github.io";
-		if ((host == window.location.host) && (window.location.protocol != "https:")) {
-			window.location.protocol = "https";
-		}
-	}, 250)
+	if (reassign != undefined) {
+		reassign();
+	}
+	document.getElementsByClassName("spoiler")[0].style.display = "none";
+	document.getElementById("Background Color").value = "#FFFFFF";
+	settings();
+	window.onbeforeunload = function() {
+		endSession();
+	}
+	var host = "josh-d-l.github.io";
+	if ((host == window.location.host) && (window.location.protocol != "https:")) {
+		window.location.protocol = "https";
+	}
 	
 };
