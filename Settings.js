@@ -63,7 +63,7 @@ function settings() {
 	document.body.style.color = localStorage.getItem("Text Color");
 	document.body.style.backgroundColor = localStorage.getItem("Background Color");
 }
-if (reassign != undefined) {
+if (typeof(reassign) === typeof(Function)) {
 	reassign();
 }
 document.getElementsByClassName("spoiler")[0].style.display = "none";
