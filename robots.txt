@@ -1,3 +1,4 @@
 User-agent: *
 Disallow: /Math-Machines/Thanks
 Disallow: /Math-Machines/WIP/*
+Disallow: /Math-Machines/Archive/*
