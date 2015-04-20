@@ -1,33 +1,24 @@
 <a href='
-javascript: function x() {
-	var winName = prompt("Player Name?");
-	var maxTime = prompt("Check for at most ___ minutes ago");
-	var myWin = window.open("https://www.realmeye.com/player/" + winName, winName);
-	var Alert = true;
-	var interval = setInterval(function(interval) {
-		var timeAgo = myWin.document.getElementsByClassName("timeago")[0].innerHTML;
-		if (timeAgo == "~a minute ago") {
-			timeAgo = 1;
-		} else if (timeAgo == "&lt;a minute ago") {
-			timeAgo = 0.5;
-		} else if (timeAgo.indexOf("minutes") > -1) {
-			timeAgo = Number(timeAgo.replace(" minutes ago", ""));
-		} else if (timeAgo.indexOf("hour ") > -1) {
-			timeAgo = 60;
-		} else if (timeAgo.indexOf("hours") > -1) {
-			timeAgo = timeAgo.replace(" hours ago", "");
-			timeAgo = Number(timeAgo.replace("~", ""));
-			timeAgo = timeAgo * 60;
-		}
-		console.log(timeAgo);
-		if (timeAgo <= maxTime) {
-			if (Alert === true) {
-				alert(winName + " has logged on!");
-				Alert = false;
-			}
-			clearInterval(interval);
-		}
-		myWin = window.open("https://www.realmeye.com/player/" + winName, winName);
-	}, 5000);
+javascript:function x() {
+	var interval = prompt("How often should the page refresh? (Minutes)");
+	var myWindow = window.open('', 'PageRefresher', 'height=1,width=200');
+	var s = document.createElement('script');
+	s.setAttribute('type','text/javascript');
+	s.innerHTML = "function pageInterval() {
+		setInterval(function () {
+			if (opener != null) {
+				opener.location.reload(true);
+			} 
+			else {
+				window.close();
+			} 
+		}, " + interval * 60000 + ");
+	}"; 
+	myWindow.document.body.appendChild(s);
+	var t = document.createElement('title');
+	t.innerHTML = "Page Refresher";
+	myWindow.document.head.appendChild(t);
+	myWindow.document.body.innerHTML += "Close this window to end page refresh, or close the original window.";
+	myWindow.pageInterval();
 }
-x();'>RealmEye Notifier</a>
+x();'>Page Refresher</a>
